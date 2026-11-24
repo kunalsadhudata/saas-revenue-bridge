@@ -129,3 +129,71 @@ Simulation assumptions may influence observed
 growth, churn, retention, and expansion.
 
 All findings must be labeled as simulated.
+
+## Phase 1 — Approved Simulation Design
+
+### Simulation Parameters
+
+| Parameter | Value |
+|---|---|
+| Start month | 2025-01 |
+| End month | 2026-09 |
+| Duration | 21 consecutive months |
+| Random seed | 42 |
+| Initial customer base | 0 |
+| New customers per month | 40 |
+| Monthly churn probability | 3.5% |
+| Monthly upgrade probability | 4% |
+| Monthly downgrade probability | 2% |
+| Monthly reactivation probability | 1.5% |
+| Currency | USD |
+| Data granularity | One active customer per month |
+
+### Subscription Plans
+
+| Plan | Monthly Price | New Customer Probability |
+|---|---:|---:|
+| Starter | $29 | 60% |
+| Growth | $99 | 30% |
+| Scale | $299 | 10% |
+
+### Customer Movement Rules
+
+- Each customer receives a unique and permanent ID.
+- New customers are assigned plans using the approved probabilities.
+- Upgrades move customers up one subscription tier.
+- Downgrades move customers down one subscription tier.
+- Churned customers are excluded from active monthly records.
+- Reactivated customers return to their last paid plan.
+- Reactivation requires at least one inactive calendar month.
+- Churn, upgrade and downgrade are mutually exclusive outcomes.
+- Each customer can experience at most one movement per month.
+- New and reactivated customers cannot experience additional movements in their arrival month.
+- Invalid plan movements leave the current plan unchanged.
+- Customers without a movement retain their current plan.
+
+### Dataset Schema
+
+| Column | Description |
+|---|---|
+| month | Calendar month in YYYY-MM format |
+| customer_id | Unique and permanent customer identifier |
+| plan | Active subscription plan |
+| mrr | Monthly recurring revenue in USD |
+
+### Simulation Limitations
+
+- All customer records are synthetic.
+- Subscription prices represent monthly-equivalent recurring revenue.
+- Annual invoices, one-time fees and usage overages are not simulated separately.
+- Observed movement rates may differ from configured probabilities.
+- Plan eligibility may reduce observed upgrade and downgrade rates.
+- Approximately 4% final-month MRR growth is a target scenario, not a guaranteed or verified result.
+- Results must not be manipulated to achieve the target growth rate.
+
+### Approval Status
+
+Simulation design: Approved.
+Dataset generation: Pending.
+Data validation: Pending.
+Revenue analysis: Pending.
