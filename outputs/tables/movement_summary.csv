@@ -1,0 +1,7 @@
+movement_type,event_count,total_previous_mrr,total_current_mrr,signed_mrr
+Churn,235,25325,0,-25325
+Contraction,64,11136,3536,-7600
+Expansion,244,13096,41356,28260
+New,840,0,68780,68780
+Reactivation,16,0,2104,2104
+Unchanged,6459,632451,632451,0
